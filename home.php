@@ -6,7 +6,7 @@ session_start();
 /* // Connection in Database*/
 
 if (!isset($_SESSION['email'])) {
-  header( 'Location: login.php' );
+  header( 'Location: index.php' );
 }
 
 ?>
