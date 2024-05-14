@@ -16,27 +16,23 @@ if (!isset($_SESSION['email'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="home.css">
-    
+
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    
-    <!--<title>Dashboard Sidebar Menu</title>--> 
+
+    <!--<title>Dashboard Sidebar Menu</title>-->
 </head>
 <body>
-    <nav class="sidebar close">
+    <section class="wrapper">
+<nav class="sidebar close">
         <header>
-            <div class="image-text">
-                <span class="image">
-                    
-                </span>
+<div class="image-logo">
+    <img src="assets/homelogo-sm.png" class="logo" id="logo" alt="Dishcover">
+</div>
 
-                <div class="text logo-text">
-                  <img src="assets/homelogo.png" class= "logo" alt="Dishcover">
-                </div>
-            </div>
 
             <i class='bx bx-chevron-right toggle'></i>
         </header>
@@ -87,18 +83,18 @@ if (!isset($_SESSION['email'])) {
             </div>
 
             <div class="bottom-content">
-                <li class="">
+                <li class="nav-link">
                     <a href="#">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
-                </li>    
+                </li>
             </div>
         </div>
 
     </nav>
 
-    <main class="main-content">
+    <main class="main-content close">
         <div class="banner">
             <img src="assets/market.png" class= "market" alt="Dishcover">
         </div>
@@ -115,31 +111,52 @@ if (!isset($_SESSION['email'])) {
             </div>
         </div>
           <!-- <div class="dish-box"> -->
-          
+
             <!-- <p><i class="fa-brands fa-html5"></i></p>
             <a href="./subjects/html/">Hypertext Markup Language</a> -->
 
 
         </div>
       </main>
+    </section>
 
-    <script>
-        const body = document.querySelector('body'),
-      sidebar = body.querySelector('nav'),
-      toggle = body.querySelector(".toggle"),
-      searchBtn = body.querySelector(".search-box"),
-      modeSwitch = body.querySelector(".toggle-switch"),
-      modeText = body.querySelector(".mode-text");
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const body = document.querySelector('body');
+    const sidebar = body.querySelector('nav');
+    const toggle = body.querySelector(".toggle");
+    const searchBtn = body.querySelector(".search-box");
+    const modeSwitch = body.querySelector(".toggle-switch");
+    const modeText = body.querySelector(".mode-text");
+    const content = body.querySelector(".main-content");
+    const logo = document.getElementById("logo");
 
+    const updateLogo = () => {
+      logo.classList.add('fade-out');
+      setTimeout(() => {
+        logo.src = sidebar.classList.contains("close") ? "assets/homelogo-sm.png" : "assets/homelogo.png";
+        logo.classList.remove('fade-out');
+      }, 500);
+    };
 
-toggle.addEventListener("click" , () =>{
-    sidebar.classList.toggle("close");
-})
+    // Initial logo update
+    updateLogo();
 
-searchBtn.addEventListener("click" , () =>{
-    sidebar.classList.remove("close");
-});
-    </script>
+    toggle.addEventListener("click", () => {
+      sidebar.classList.toggle("close");
+      content.classList.toggle("close");
+      updateLogo();
+      logo.classList.toggle("close");
+    });
+
+    searchBtn.addEventListener("click", () => {
+      sidebar.classList.remove("close");
+      content.classList.remove("close");
+      updateLogo();
+      logo.classList.remove("close");
+    });
+  });
+</script>
 
 </body>
 </html>
