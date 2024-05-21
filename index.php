@@ -40,7 +40,7 @@ if($conn)
      if($Email && $Password)
      {       
       $hashPassword = password_hash($Password, PASSWORD_DEFAULT);
-      $sql = "INSERT INTO register_users (full_name, email_address, password) VALUES ( '".$FullName."','".$Email."','". $hashPassword."')";
+      $sql = "INSERT INTO accounts (full_name, email_address, password) VALUES ( '".$FullName."','".$Email."','". $hashPassword."')";
      
       if ($conn->query($sql) === TRUE) {
         echo '<script>alert("Register successfully.")</script>';
@@ -66,7 +66,7 @@ if($conn)
      if($Email && $Password)
      {    
         //  $hashPassword = password_hash($Password, PASSWORD_DEFAULT);
-         $sql ="SELECT * FROM register_users WHERE email_address='".$Email."'";
+         $sql ="SELECT * FROM accounts WHERE email_address='".$Email."'";
          $result = $conn->query($sql);
          if($result->num_rows > 0){
           while ($row = $result->fetch_assoc()) {

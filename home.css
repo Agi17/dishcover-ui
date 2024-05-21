@@ -469,7 +469,7 @@ body.dark .home .text {
 
 .image-logo #logo.close {
     width: 100%;
-    height: 100px;
+    /* height: 100px; */
     transition: var(--tran-05);
 }
 
